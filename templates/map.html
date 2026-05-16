@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App</title>
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- Layout & Komponen Utama -->
+  <link rel="stylesheet" href="/static/css/layout.css" />
+  <link rel="stylesheet" href="/static/css/actor_popup.css" />
+  <link rel="stylesheet" href="/static/css/actor_panel.css" />
+  <!-- Form Edit Aktor -->
+  <link rel="stylesheet" href="/static/css/edit_business.css" />
+  <link rel="stylesheet" href="/static/css/edit_worker.css" />
+  <link rel="stylesheet" href="/static/css/edit_buyer.css" />
+  <link rel="stylesheet" href="/static/css/edit_area.css" />
+  <!-- Fitur Chatbot Spasial -->
+  <link rel="stylesheet" href="/static/css/spatial_chat.css" />
+  <!-- Profil Pengguna -->
+  <link rel="stylesheet" href="/static/css/user_profile.css" />
+
+  <link rel="icon" type="image/x-icon" href="/static/image/icon.ico">
+</head>
+
+<body
+  class="{% if not session.get('user', '').endswith(':admin@2211080.com') and not session.get('user', '').endswith(':admin') %}non-admin{% endif %}">
+  <script>
+    window.currentUser = "{{ session.get('user', '') }}";
+    window.isAdmin = window.currentUser.includes(':admin');
+  </script>
+  <div class="app">
+    <div id="map">
+      <div class="custom-zoom">
+        <div class="zoom-btn" id="zoomIn">+</div>
+        <div class="zoom-btn" id="zoomOut">−</div>
+      </div>
+      <!-- DRAWING CONTROLS -->
+      <div class="controls-left">
+        <button class="btn-circle active" id="draw-mode-btn" title="Mode Gambar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+          </svg>
+        </button>
+        <button class="btn-circle" id="pan-mode-btn" title="Mode Geser (Pan)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v5"></path>
+            <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v10"></path>
+            <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"></path>
+            <path d="M18 8a2 2 0 1 1 4 0v6a8 2 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15">
+            </path>
+          </svg>
+        </button>
+        <button class="btn-circle" id="undo-btn" title="Undo" disabled>↩</button>
+        <button class="btn-circle" id="redo-btn" title="Redo" disabled>↪</button>
+        <button class="btn-circle btn-cancel" id="cancel-btn" title="Cancel Draw" style="display: none">✕</button>
+      </div>
+    </div>
+    <div class="map-toggle" id="toggleMap">Satelit</div>
+    <div class="topbar-container">
+      <div class="topbar-search">
+        <textarea id="searching" placeholder="Cari Lokasi/Usaha"></textarea>
+        <button id="searchBtn" class="btn-search">Search</button>
+      </div>
+      <div class="open-profile" id="profile">
+        <img src="data:image/*;base64,{{ user.foto }}" alt="Profile" />
+      </div>
+    </div>
+
+    <!-- PROFILE WRAPPER -->
+    <div class="profile-wrapper" id="profileWrapper">
+      <!-- TOP PROFILE -->
+      <div class="top-profile">
+        <div id="imgProfile">
+          <img src="data:image/*;base64,{{ user.foto }}" alt="Profile" />
+        </div>
+        <div class="name-container">
+          <label class="nama">{{ user.name }}</label>
+          <label class="status">User</label>
+        </div>
+      </div>
+
+      <!-- MENU PROFIL -->
+      <div class="menu-profil" id="Profil">Profil Saya</div>
+      <div class="menu-profil" id="Keluar">Keluar</div>
+    </div>
+
+    <div class="cluster-wrapper">
+      <div class="cluster-main" id="clusterMain">
+        <span id="clusterText">Kabupaten / Kota</span>
+      </div>
+      <div class="cluster-tool" id="clusterTool">☰</div>
+      <div class="cluster-options" id="clusterOptions">
+        <div class="cluster-option">RT / RW</div>
+        <div class="cluster-option">Kelurahan</div>
+        <div class="cluster-option">Kecamatan</div>
+        <div class="cluster-option">Kabupaten / Kota</div>
+      </div>
+    </div>
+    <!-- ACTOR MAIN (YANG BESAR) -->
+
+    <!-- USAHA (DEFAULT) -->
+    <!-- ICON MINI SWITCH -->
+    <div class="actor-switch">
+      <img src="/static/image/actor/ico-show-usaha.svg" data-target="aktorUsaha">
+      <img src="/static/image/actor/ico-show-pekerja.svg" data-target="aktorCalonPekerja">
+      <img src="/static/image/actor/ico-show-pembeli.svg" data-target="aktorCalonPembeli">
+      <img src="/static/image/actor/ico-show-lokasi.svg" data-target="aktorLokasi">
+    </div>
+
+    <div class="actor-main active" id="aktorUsaha">
+      <span>
+        <img src="/static/image/actor/usaha.svg" />
+        <br />Aktor<br />Usaha
+      </span>
+    </div>
+
+    <!-- PEKERJA -->
+    <div class="actor-main hidden" id="aktorCalonPekerja">
+      <span>
+        <img src="/static/image/actor/calon-pekerja.svg" />
+        <br />Aktor<br />Pekerja
+      </span>
+    </div>
+
+    <!-- PEMBELI -->
+    <div class="actor-main hidden" id="aktorCalonPembeli">
+      <span>
+        <img src="/static/image/actor/calon-pembeli.svg" />
+        <br />Aktor<br />Pembeli
+      </span>
+    </div>
+
+    <!-- LOKASI -->
+    <div class="actor-main hidden" id="aktorLokasi">
+      <span>
+        <img src="/static/image/actor/draw-location.svg" />
+        <br />Draw<br />Lokasi
+      </span>
+    </div>
+
+
+
+    <!-- LOCATION OVERLAY -->
+    <div class="location-overlay hidden" id="locationOverlay">
+      <div class="location-modal">
+        <div class="location-icon">
+          <img src="/static/image/icon/ai-pin.svg" class="location-svg" alt="Pin" />
+        </div>
+        <div class="location-title">Apakah Anda ingin mengubah lokasi?</div>
+        <div class="location-desc">
+          Perubahan lokasi akan mempengaruhi data yang ditampilkan.
+        </div>
+        <div class="location-actions">
+          <button class="btn-location no" onclick="closeLocation()">Tidak</button>
+          <button class="btn-location yes" onclick="confirmLocation()">Ya</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- EDIT OVERLAY USAHA -->
+    <div class="edit-overlay" id="editUsahaOverlay">
+      <div class="edit-card">
+        <div class="edit-header">
+          <div class="edit-title">Usaha</div>
+          <div class="close-edit" onclick="closeEditOverlay(this)">✕</div>
+        </div>
+
+        <div class="form-group">
+          <label class="label">Nama</label>
+          <textarea placeholder="Masukkan nama usaha"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="label">Foto Visual</label>
+          <div class="upload-box" onclick="document.getElementById('fileUsaha').click()">Upload Foto</div>
+          <input type="file" id="fileUsaha" hidden accept="image/*" onchange="previewImageEdit(event, 'previewUsaha')">
+          <div class="preview" id="previewUsaha">
+            <img src="" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="label">Bidang</label>
+          <textarea placeholder="Masukkan bidang usaha/pekerjaan"></textarea>
+        </div>
+
+        <div class="section-title">A. Primary Activities</div>
+        <div id="inboundInputs"></div>
+        <div id="operationsInputs"></div>
+        <div id="outboundInputs"></div>
+        <div id="marketingInputs"></div>
+        <div id="serviceInputs"></div>
+
+        <div class="section-title">B. Support Activities</div>
+        <div id="procurementInputs"></div>
+        <div id="techInputs"></div>
+        <div id="hrInputs"></div>
+        <div id="infraInputs"></div>
+
+        <div class="form-group">
+          <label class="label">Notes</label>
+          <textarea placeholder="Masukkan catatan tambahan..."></textarea>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-save">Simpan</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- EDIT OVERLAY PEKERJA -->
+    <div class="edit-overlay" id="editPekerjaOverlay">
+      <div class="edit-card">
+        <div class="edit-header">
+          <div class="edit-title">Calon Pekerja</div>
+          <div class="close-edit" onclick="closeEditOverlay(this)">✕</div>
+        </div>
+
+        <div class="form-group">
+          <label class="label">Nama</label>
+          <textarea placeholder="Masukkan nama calon pekerja"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="label">Foto Visual</label>
+          <div class="upload-box" onclick="document.getElementById('filePekerja').click()">Upload Foto</div>
+          <input type="file" id="filePekerja" hidden accept="image/*"
+            onchange="previewImageEdit(event, 'previewPekerja')">
+          <div class="preview" id="previewPekerja">
+            <img src="" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="label">Jenis</label>
+          <select class="jenis-pekerja-select">
+            <option value="">Pilih</option>
+            <option value="individu">Individu</option>
+            <option value="kelompok">Kelompok</option>
+          </select>
+        </div>
+
+        <div class="form-group hidden box-individu">
+          <label class="label">Individu</label>
+          <select>
+            <option>Personal</option>
+          </select>
+        </div>
+
+        <div class="form-group hidden box-kelompok">
+          <label class="label">Kelompok</label>
+          <select>
+            <option>Kelompok</option>
+          </select>
+        </div>
+
+        <div class="form-group hidden box-jumlah">
+          <label class="label">Jumlah</label>
+          <input type="text" class="input input-jumlah-orang" placeholder="Jumlah orang" />
+        </div>
+
+        <div class="form-group">
+          <label class="label">Status</label>
+          <select>
+            <option>Menganggur</option>
+            <option>Mismatch</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="label">Skill</label>
+          <textarea placeholder="Skill yang dimiliki"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="label">Notes</label>
+          <textarea placeholder="Catatan"></textarea>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-save">Simpan</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- EDIT OVERLAY PEMBELI -->
+    <div class="edit-overlay" id="editPembeliOverlay">
+      <div class="edit-card">
+        <div class="edit-header">
+          <div class="edit-title">Calon Pembeli</div>
+          <div class="close-edit" onclick="closeEditOverlay(this)">✕</div>
+        </div>
+
+        <div class="form-group">
+          <label class="label">Nama</label>
+          <textarea placeholder="Masukkan nama calon pembeli"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="label">Foto Visual</label>
+          <div class="upload-box" onclick="document.getElementById('filePembeli').click()">Upload Foto</div>
+          <input type="file" id="filePembeli" hidden accept="image/*"
+            onchange="previewImageEdit(event, 'previewPembeli')">
+          <div class="preview" id="previewPembeli">
+            <img src="" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="label">Buyer Type</label>
+          <select>
+            <option>Pilih tipe</option>
+            <option>Kebutuhan</option>
+            <option>Keinginan</option>
+            <option>Masalah</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="label">Jenis</label>
+          <select class="jenis-pembeli-select">
+            <option value="">Pilih</option>
+            <option value="individu">Individu</option>
+            <option value="massal">Massal</option>
+            <option value="organisasi">Organisasi</option>
+          </select>
+        </div>
+
+        <div class="form-group hidden box-individu">
+          <label class="label">Individu</label>
+          <select>
+            <option>Personal</option>
+          </select>
+        </div>
+
+        <div class="form-group hidden box-massal">
+          <label class="label">Massal</label>
+          <select>
+            <option>Kelompok</option>
+          </select>
+        </div>
+
+        <div class="form-group hidden box-jumlah">
+          <label class="label">Jumlah</label>
+          <input type="text" class="input input-jumlah-orang" placeholder="Jumlah orang" />
+        </div>
+
+        <div class="form-group hidden box-org">
+          <label class="label">Organisasi</label>
+          <select>
+            <option>Perusahaan</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="label">Frekuensi</label>
+          <select>
+            <option>Harian</option>
+            <option>Mingguan</option>
+            <option>Bulanan</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="label">Daya Beli</label>
+          <select>
+            <option>Rendah</option>
+            <option>Menengah</option>
+            <option>Tinggi</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="label">Notes</label>
+          <textarea placeholder="Catatan"></textarea>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-save">Simpan</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- EDIT OVERLAY LOKASI -->
+    <div class="edit-overlay" id="editLokasiOverlay">
+      <div class="edit-card">
+        <div class="edit-header">
+          <div class="edit-title">Lokasi</div>
+          <div class="close-edit" onclick="closeEditOverlay(this)">✕</div>
+        </div>
+
+        <div class="form-group">
+          <label class="label">Nama</label>
+          <textarea placeholder="Masukkan nama lokasi"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="label">Foto Visual</label>
+          <div class="upload-box" onclick="document.getElementById('fileLokasi').click()">Klik untuk upload foto</div>
+          <input type="file" id="fileLokasi" hidden accept="image/*"
+            onchange="previewImageEdit(event, 'previewLokasi')">
+          <div class="preview" id="previewLokasi">
+            <img src="" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="label">Warna</label>
+          <input type="color" class="input color-input" />
+        </div>
+
+        <!-- COORDINATE CONTAINER FOR POLYGON -->
+        <div id="polygonCoordsContainer" class="form-group hidden">
+          <label class="label">Titik Koordinat (Lat, Lon)</label>
+          <div class="coords-list-wrapper">
+            <div class="coords-list" id="coordsList">
+              <!-- Dynamic content -->
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="label">Marker Type</label>
+          <select>
+            <option>Economic Activity Area</option>
+            <option>Resource Area</option>
+            <option>Infrastructure Area</option>
+            <option>Natural Area</option>
+            <option>Residential Area</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="label">Populasi</label>
+          <input type="text" class="input input-populasi" placeholder="Masukkan angka" />
+        </div>
+
+        <div class="form-group">
+          <label class="label">Notes</label>
+          <textarea placeholder="Catatan tambahan"></textarea>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-save">Simpan</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHOTO OVERLAY MODAL -->
+    <div id="photoOverlay" class="photo-overlay hidden" onclick="this.classList.add('hidden')">
+      <div class="photo-modal-content">
+        <img id="fullPhoto" src="" onclick="event.stopPropagation()" />
+      </div>
+    </div>
+
+    <!-- DELETE CONFIRM OVERLAY -->
+    <div class="delete-confirm-overlay hidden" id="deleteConfirmOverlay">
+      <div class="delete-confirm-modal">
+        <div class="delete-confirm-icon">
+          <img src="/static/image/icon/delete.svg" class="delete-confirm-svg" alt="Delete" />
+        </div>
+        <div class="delete-confirm-title">Hapus Aktor?</div>
+        <div class="delete-confirm-desc">
+          Aktor ini akan dihapus dari peta secara permanen dan tidak bisa dikembalikan.
+        </div>
+        <div class="delete-confirm-actions">
+          <button class="btn-confirm no" onclick="cancelDeleteMarker()">Batal</button>
+          <button class="btn-confirm yes" onclick="confirmDeleteMarker()">Hapus</button>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="chatbot">
+      <span>
+        <img src="/static/image/actor/chatbot.svg" alt="Chatbot" />
+      </span>
+    </div>
+
+    <!-- Chatbot Overlay UI -->
+    <div id="chatbotOverlay" class="chatbot-overlay hidden">
+      <div class="chatbot-card">
+        <div class="chatbot-header" style="align-items: center; border-bottom: none; padding-bottom: 12px;">
+          <div class="header-left" style="display: flex; align-items: center; gap: 10px;">
+            <img src="/static/image/actor/chatbot.svg" alt="AI Agent" class="bot-icon" />
+            <div class="bot-info">
+              <span class="bot-name">Chatbot AI</span>
+              <span class="bot-status">Online • Siap membantu</span>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <button id="mainJcToggle" class="btn-job-creation-toggle" onclick="window.toggleJobCreationMenu()">Job
+              Creation</button>
+            <button class="close-chatbot" onclick="window.toggleChatbot()">✕</button>
+          </div>
+        </div>
+
+        <!-- Submenu Chips (Hidden by Default) -->
+        <div id="jobCreationSubMenu" class="jc-submenu-container hidden">
+          <div class="jc-chip" id="chipSumberDaya"
+            style="display: flex; align-items: center; padding: 0; overflow: hidden;">
+            <div onclick="window.setChatMode('sumber-daya', document.getElementById('chipSumberDaya'))"
+              style="padding: 6px 10px; cursor: pointer;">Sumber Daya</div>
+            <div style="width: 1px; height: 14px; background: currentColor; opacity: 0.3;"></div>
+            <div onclick="document.getElementById('chatImgInput').click()"
+              style="padding: 6px 10px; cursor: pointer; display: flex; align-items: center;"
+              title="Upload Gambar Produk">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                style="width: 14px; height: 14px;">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+            </div>
+          </div>
+          <button class="jc-chip" onclick="window.setChatMode('identifikasi', this)">Identifikasi</button>
+          <button class="jc-chip" onclick="window.setChatMode('analisis', this)">Analisis</button>
+          <button class="jc-chip" onclick="window.setChatMode('monetisasi', this)">Monetisasi</button>
+          <button class="jc-chip" onclick="window.setChatMode('model-bisnis', this)">Model Bisnis</button>
+          <button class="jc-chip" onclick="window.setChatMode('job-creation', this)">Job Creation</button>
+          <button class="jc-chip" onclick="window.setChatMode('skalabilitas', this)">Skalabilitas</button>
+        </div>
+
+        <div class="chatbot-messages" id="chatMessages">
+          <div class="message bot">
+            <div class="bubble">Halo! Saya Chatbot AI Agent. Ada yang bisa saya bantu terkait analisis wilayah atau data
+              aktor?</div>
+          </div>
+        </div>
+
+        <div class="chatbot-input-container">
+          <!-- Location Target Badge -->
+          <div id="locationTargetBadge" class="location-badge hidden">
+            <span>Lokasi telah tertarget</span>
+            <button class="remove-target" onclick="removeLocationTarget()">✕</button>
+          </div>
+
+          <!-- Image Preview Container -->
+          <div id="chatImagePreview" class="chat-image-preview hidden"
+            style="position: relative; width: fit-content; margin-bottom: -4px;">
+            <img id="chatPreviewImg" src=""
+              style="height: 60px; border-radius: 8px; border: 1px solid #ccc; object-fit: cover;" />
+            <button onclick="window.removeChatImage()"
+              style="position: absolute; top: -6px; right: -6px; background: #ff4757; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; font-size: 10px; cursor: pointer;">✕</button>
+          </div>
+
+          <div class="input-wrapper">
+            <button id="btnAiPin" class="ai-pin-btn" title="Targetkan Lokasi">
+              <img src="/static/image/icon/ai-pin.svg" alt="Pin" />
+            </button>
+
+            <input type="file" id="chatImgInput" accept="image/*" style="display: none;"
+              onchange="window.handleChatImageUpload(event)" />
+
+            <textarea id="chatInput" placeholder="Tanyakan sesuatu..." rows="1"></textarea>
+            <button class="send-chat">➤</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- PROFILE EDIT OVERLAY -->
+    <div id="profileEditOverlay" class="profile-edit-overlay hidden">
+      <div class="profile-edit-card">
+        <div class="close-profile-edit" onclick="document.getElementById('profileEditOverlay').classList.add('hidden')">
+          ✕
+        </div>
+        <div class="profile-edit-title">Edit Profil Saya</div>
+
+        <div class="edit-profile-photo" onclick="document.getElementById('profileFileInput').click()">
+          <img id="profilePreviewImg" src="data:image/*;base64,{{ user.foto }}" alt="Profile" />
+          <div class="photo-overlay-edit">Ganti Foto</div>
+        </div>
+        <input type="file" id="profileFileInput" hidden accept="image/*" onchange="previewProfilePhoto(event)">
+
+        <input type="text" id="profileNameInput" class="edit-profile-input" value="{{ user.name }}"
+          placeholder="Nama Anda">
+
+        <button class="btn-profile-save" id="saveProfileBtn">Simpan Perubahan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Markdown Library -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Map & Aktor -->
+  <script src="/static/js/map.js"></script>
+  <script src="/static/js/actor_popup.js"></script>
+  <script src="/static/js/draw_area.js"></script>
+  <!-- Spatial Chatbot & AI Pin -->
+  <script src="/static/js/spatial_chat.js"></script>
+  <script>
+    // Ganti Map dengan array JSON agar mudah simpan/load
+    window.actorData = []; // setiap item: { actorId, markerId, type, iconUrl, nama, sektor, valueChain, survival, images, dll }
+
+
+    const switchIcons = document.querySelectorAll(".actor-switch img");
+    const actors = document.querySelectorAll(".actor-main");
+
+    switchIcons.forEach(icon => {
+      icon.addEventListener("click", () => {
+        const targetId = icon.getAttribute("data-target");
+
+        // sembunyikan semua actor
+        actors.forEach(actor => {
+          actor.classList.add("hidden");
+        });
+
+        // tampilkan target
+        document.getElementById(targetId).classList.remove("hidden");
+
+        // reset active icon
+        switchIcons.forEach(i => i.classList.remove("active"));
+
+        // aktifkan icon yang diklik
+        icon.classList.add("active");
+      });
+    });
+  </script>
+  <script src="/static/js/user_profile.js"></script>
+
+</body>
+
+</html>
