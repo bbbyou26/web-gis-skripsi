@@ -106,5 +106,5 @@ Pastikan perangkat Anda telah terinstal **Python 3.9+** sebelum mengeksekusi per
    pip install -r requirements.txt
 
 3. **Inisialisasi Server Lokal**
- ```bash
-  python server.py
+   ```bash
+   python server.py
