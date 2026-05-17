@@ -62,9 +62,16 @@ Sistem ini dibangun dengan pendekatan modular. Klik pada masing-masing komponen 
 
 Sistem ini mengonversi data spasial mentah menjadi peluang ekonomi riil melalui 4 pilar intervensi:
 
-<p align="center">
-  <img src="https://googleusercontent.com/image_generation_content/1" alt="Value Chain Ecosystem Diagram" width="100%">
-</p>
+```text
+[ Data Spasial Wilayah ] ──> [ Analisis AI (LLM) ] ──> [ Validasi RAGAS ]
+                                        │
+             ┌──────────────────────────┼──────────────────────────┐
+             ▼                          ▼                          ▼
+     { Potensi UMKM }          { Daya Tarik Investasi }     { Kebijakan Tepat }
+             │                          │                          │
+             └──────────────────────────┼──────────────────────────┘
+                                        ▼
+                         [ STRATEGI CIPTA LAPANGAN KERJA ]
 
 1. Inkubasi Wirausaha Lokal (UMKM)
 Melalui analisis di **`routes_spatial.py`**, sistem memetakan anomali komoditas unggulan dan demografi pasar. AI kemudian memproyeksikan model bisnis baru yang memiliki survival rate tinggi di titik tersebut, memicu pembukaan usaha mandiri yang menyerap tenaga kerja lokal.
