@@ -1,6 +1,6 @@
-# Dragondol GIS Landing Page
+# Landing Page
 
-Ini adalah landing page statis untuk proyek **Dragondol GIS**.
+Ini adalah landing page statis untuk proyek **Web GIS App**.
 Dibuat terpisah dari repositori aplikasi utama agar memudahkan maintenance dan deployment.
 
 ## Cara Menggunakan:
