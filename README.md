@@ -64,7 +64,7 @@ Sistem ini mengonversi data spasial mentah menjadi peluang ekonomi riil melalui 
 
 <div align="center">
 
-```diff
+```
 + ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 + ┃              DATA SPASIAL WILAYAH              ┃
 + ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
