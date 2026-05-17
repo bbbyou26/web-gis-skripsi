@@ -64,40 +64,88 @@ Sistem ini mengonversi data spasial mentah menjadi peluang ekonomi riil melalui 
 
 <div align="center">
 
-<pre>
+<table>
+<tr>
+<td align="center" style="padding:12px 40px; border:2px solid #4fc3f7; border-radius:10px;">
+<b>DATA SPASIAL WILAYAH</b>
+</td>
+</tr>
+</table>
 
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃        DATA SPASIAL WILAYAH         ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-                    │
-                    ▼
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃    ANALISIS AI • KNOWLEDGE GRAPH    ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-                    │
-                    ▼
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃         VALIDASI OUTPUT AI          ┃
-┃               (RAGAS)               ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-                    │
-        ┏━━━━━━━━━━━┿━━━━━━━━━━━┓
-        ▼           ▼           ▼
+<div style="color:#4fc3f7; font-size:22px;">&#8595;</div>
 
-╭────────────╮ ╭────────────╮ ╭────────────╮
-│  POTENSI   │ │ INVESTASI  │ │ KEBIJAKAN │
-│    UMKM    │ │ STRATEGIS  │ │  PRESISI  │
-╰─────┬──────╯ ╰─────┬──────╯ ╰─────┬──────╯
-      │              │              │
-      └──────────────┼──────────────┘
-                     ▼
+<table>
+<tr>
+<td align="center" style="padding:12px 40px; border:2px solid #4fc3f7; border-radius:10px;">
+<b>ANALISIS AI • KNOWLEDGE GRAPH • LLM</b>
+</td>
+</tr>
+</table>
 
-╔══════════════════════════════════════╗
-║   STRATEGI CIPTA LAPANGAN KERJA     ║
-║   AI • GIS • SPATIAL INTELLIGENCE   ║
-╚══════════════════════════════════════╝
+<div style="color:#4fc3f7; font-size:22px;">&#8595;</div>
 
-</pre>
+<table>
+<tr>
+<td align="center" style="padding:12px 40px; border:2px solid #4fc3f7; border-radius:10px;">
+<b>VALIDASI OUTPUT AI (RAGAS)</b>
+</td>
+</tr>
+</table>
+
+<br>
+
+<table>
+<tr>
+
+<td align="center" style="padding:0 20px;">
+<div style="color:#4fc3f7; font-size:22px;">&#8595;</div>
+<br>
+<table>
+<tr>
+<td align="center" style="padding:10px 18px; border:2px solid #81d4fa; border-radius:10px;">
+<b>POTENSI UMKM</b>
+</td>
+</tr>
+</table>
+</td>
+
+<td align="center" style="padding:0 20px;">
+<div style="color:#4fc3f7; font-size:22px;">&#8595;</div>
+<br>
+<table>
+<tr>
+<td align="center" style="padding:10px 18px; border:2px solid #4fc3f7; border-radius:10px;">
+<b>INVESTASI STRATEGIS</b>
+</td>
+</tr>
+</table>
+</td>
+
+<td align="center" style="padding:0 20px;">
+<div style="color:#4fc3f7; font-size:22px;">&#8595;</div>
+<br>
+<table>
+<tr>
+<td align="center" style="padding:10px 18px; border:2px solid #29b6f6; border-radius:10px;">
+<b>KEBIJAKAN PRESISI</b>
+</td>
+</tr>
+</table>
+</td>
+
+</tr>
+</table>
+
+<div style="color:#4fc3f7; font-size:22px;">&#8595;</div>
+
+<table>
+<tr>
+<td align="center" style="padding:14px 50px; border:3px solid #4fc3f7; border-radius:12px;">
+<b>STRATEGI CIPTA LAPANGAN KERJA</b><br>
+AI • GIS • SPATIAL INTELLIGENCE
+</td>
+</tr>
+</table>
 
 </div>
 
