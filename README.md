@@ -62,23 +62,18 @@ Sistem ini dibangun dengan pendekatan modular. Klik pada masing-masing komponen 
 
 Sistem ini mengonversi data spasial mentah menjadi peluang ekonomi riil melalui 4 pilar intervensi:
 
-[ Data Spasial Wilayah ] ──> [ Analisis AI (LLM) ] ──> [ Validasi RAGAS ]
-                                        │
-             ┌──────────────────────────┼──────────────────────────┐
-             ▼                          ▼                          ▼
-     { Potensi UMKM }          { Daya Tarik Investasi }     { Kebijakan Tepat }
-             │                          │                          │
-             └──────────────────────────┼──────────────────────────┘
-                                        ▼
-                         [ STRATEGI CIPTA LAPANGAN KERJA ]
+<p align="center">
+  <img src="https://googleusercontent.com/image_generation_content/1" alt="Value Chain Ecosystem Diagram" width="100%">
+</p>
+
 1. Inkubasi Wirausaha Lokal (UMKM)
-Melalui analisis di routes_spatial.py, sistem memetakan anomali komoditas unggulan dan demografi pasar. AI kemudian memproyeksikan model bisnis baru yang memiliki survival rate tinggi di titik tersebut, memicu pembukaan usaha mandiri yang menyerap tenaga kerja lokal.
+Melalui analisis di **`routes_spatial.py`**, sistem memetakan anomali komoditas unggulan dan demografi pasar. AI kemudian memproyeksikan model bisnis baru yang memiliki survival rate tinggi di titik tersebut, memicu pembukaan usaha mandiri yang menyerap tenaga kerja lokal.
 
 2. Aklerasi Investasi Masuk
-Dengan segmentasi aktor pada routes_actors.py, investor luar dapat langsung melihat kalkulasi spasial mengenai ketersediaan lahan strategis dan pasokan angkatan kerja regional. Hal ini memotong birokrasi informasi dan mempercepat pembangunan industri padat karya.
+Dengan segmentasi aktor pada **`routes_actors.py`**, investor luar dapat langsung melihat kalkulasi spasial mengenai ketersediaan lahan strategis dan pasokan angkatan kerja regional. Hal ini memotong birokrasi informasi dan mempercepat pembangunan industri padat karya.
 
 3. Kebijakan Berbasis Data (Anti-Halusinasi)
-Sistem menggunakan routes_ragas.py untuk menguji kelayakan rekomendasi ekonomi dari AI. Pemerintah dapat menggunakan keputusan bersih ini untuk merancang kurikulum pelatihan kerja (workforce training) yang link-and-match dengan kebutuhan riil industri lokal.
+Sistem menggunakan **`routes_ragas.py`** untuk menguji kelayakan rekomendasi ekonomi dari AI. Pemerintah dapat menggunakan keputusan bersih ini untuk merancang kurikulum pelatihan kerja (workforce training) yang link-and-match dengan kebutuhan riil industri lokal.
 
 4. Presisi Proyek Padat Karya
 Memetakan wilayah dengan indeks ekonomi lemah secara spasial, memberikan rekomendasi titik koordinat absolut kepada pemerintah untuk menyalurkan stimulus proyek infrastruktur padat karya agar tepat sasaran.
