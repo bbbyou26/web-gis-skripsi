@@ -8,9 +8,6 @@ Berisi semua fungsi yang memanggil AI:
 
 from config import client_llm, client_embed, MODEL_NAME, EMBED_MODEL, HAS_ADVANCED_TOOLS, OPENAI_API_KEY_LLM, BASE_URL
 
-# Pustaka Eksternal Terkait Data Science
-# (SimPy, Pandas, scikit-learn telah dihapus demi arsitektur bersih ringan)
-
 
 # ===============================
 # UTILS: EMBEDDING (SEMANTIC)
@@ -26,7 +23,7 @@ def get_embedding(text: str) -> list:
 
 
 # ===============================
-# PANGGILAN LLM (RAW & LANGCHAIN)
+# PANGGILAN LLM 
 # ===============================
 def call_llm(system_prompt: str, user_prompt: str, temperature: float = 0.75, media_data: str = None) -> str:
     """Kirim prompt ke LLM dan kembalikan teks respons (Stateless). Mendukung Vision jika media_data (base64) disertakan."""
