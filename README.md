@@ -102,8 +102,8 @@ Pastikan perangkat Anda telah terinstal **Python 3.9+** sebelum mengeksekusi per
    cd web-gis-skripsi
    
 2. **Instalasi Paket Dependensi**
- ```bash
-  pip install -r requirements.txt
+   ```bash
+   pip install -r requirements.txt
 
 3. **Inisialisasi Server Lokal**
  ```bash
