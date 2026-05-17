@@ -62,16 +62,42 @@ Sistem ini dibangun dengan pendekatan modular. Klik pada masing-masing komponen 
 
 Sistem ini mengonversi data spasial mentah menjadi peluang ekonomi riil melalui 4 pilar intervensi:
 
-```text
-[ Data Spasial Wilayah ] ──> [ Analisis AI (LLM) ] ──> [ Validasi RAGAS ]
-                                        │
-             ┌──────────────────────────┼──────────────────────────┐
-             ▼                          ▼                          ▼
-     { Potensi UMKM }          { Daya Tarik Investasi }     { Kebijakan Tepat }
-             │                          │                          │
-             └──────────────────────────┼──────────────────────────┘
-                                        ▼
-                         [ STRATEGI CIPTA LAPANGAN KERJA ]
+<div align="center">
+
+```diff
++ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
++ ┃              DATA SPASIAL WILAYAH              ┃
++ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+                          │
+                          ▼
++ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
++ ┃        ANALISIS AI • KNOWLEDGE GRAPH • LLM     ┃
++ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+                          │
+                          ▼
++ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
++ ┃          VALIDASI OUTPUT AI (RAGAS)            ┃
++ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+                          │
+         ┏━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━┓
+         ▼                ▼                ▼
+
++ ╭────────────────╮ ╭────────────────╮ ╭────────────────╮
++ │   POTENSI      │ │    INVESTASI   │ │   KEBIJAKAN   │
++ │     UMKM       │ │   BERBASIS AI  │ │  PRESISI DATA │
++ ╰────────┬───────╯ ╰────────┬───────╯ ╰────────┬───────╯
+          │                  │                  │
+          └──────────────────┼──────────────────┘
+                             ▼
+
++ ╔══════════════════════════════════════════════════╗
++ ║         STRATEGI CIPTA LAPANGAN KERJA           ║
++ ║      BERBASIS AI • GIS • SPATIAL INTELLIGENCE   ║
++ ╚══════════════════════════════════════════════════╝
+```
+
+</div>
+
 
 1. Inkubasi Wirausaha Lokal (UMKM)
 Melalui analisis di **`routes_spatial.py`**, sistem memetakan anomali komoditas unggulan dan demografi pasar. AI kemudian memproyeksikan model bisnis baru yang memiliki survival rate tinggi di titik tersebut, memicu pembukaan usaha mandiri yang menyerap tenaga kerja lokal.
