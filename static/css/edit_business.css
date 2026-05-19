@@ -204,3 +204,144 @@ select:focus {
 .hidden {
   display: none !important;
 }
+
+/* AI ASSIST DESIGN REVISION */
+.label-with-ai {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.label-with-ai .label {
+  margin-bottom: 0;
+}
+
+.ai-assist-btn {
+  background: linear-gradient(135deg, #38a0c4, #8d98e0);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(56, 160, 196, 0.2);
+}
+
+.ai-assist-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(56, 160, 196, 0.4);
+  filter: brightness(1.05);
+}
+
+.ai-assist-btn svg {
+  fill: currentColor;
+}
+
+.ai-consultant-box {
+  background: #f8fbff;
+  border: 1px solid #bddce7;
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ai-consultant-box.hidden {
+  display: none !important;
+}
+
+.consultant-messages {
+  max-height: 150px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 4px;
+}
+
+/* Scrollbar for consultant messages */
+.consultant-messages::-webkit-scrollbar {
+  width: 4px;
+}
+
+.consultant-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.consultant-messages::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 4px;
+}
+
+.consultant-msg {
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  line-height: 1.4;
+  word-break: break-word;
+  max-width: 85%;
+}
+
+.consultant-msg.bot {
+  background: white;
+  border: 1px solid #eef2f4;
+  color: #333;
+  align-self: flex-start;
+  border-bottom-left-radius: 2px;
+}
+
+.consultant-msg.user {
+  background: linear-gradient(135deg, #38a0c4, #8d98e0);
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 2px;
+}
+
+.recommendation-header {
+  font-weight: 700;
+  color: #2c5d6b;
+  margin-bottom: 4px;
+}
+
+.consultant-input-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.consultant-input-row input {
+  flex: 1;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  padding: 6px 10px;
+  font-size: 12px;
+  outline: none;
+  background: white;
+}
+
+.consultant-input-row input:focus {
+  border-color: #38a0c4;
+}
+
+.consultant-input-row button {
+  background: #38a0c4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.consultant-input-row button:hover {
+  background: #2282a3;
+}
