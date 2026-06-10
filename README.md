@@ -22,7 +22,7 @@ Aplikasi Web-GIS ini mengintegrasikan analisis data spasial dengan kecerdasan bu
 
 1. **Klona & Masuk ke Repositori**
    ```bash
-   git clone [https://github.com/claraaaaiiiby26/web-gis-skripsi.git](https://github.com/claraaaaiiiby26/web-gis-skripsi.git)
+   git clone git clone https://github.com/bbbyou26/web-gis-skripsi.git
    cd web-gis-skripsi
    
 2. **Instalasi Paket Dependensi**
