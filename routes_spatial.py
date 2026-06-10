@@ -122,7 +122,7 @@ def save_spatial_pin():
     """Simpan pin secara ringan ke Neo4j."""
     data = request.get_json()
     if driver:
-        with driver.session(database="pp1") as session:
+        with driver.session() as session:
             session.run("MATCH (f:FocusArea) DETACH DELETE f")
             session.run("CREATE (f:FocusArea {lat: $lat, lng: $lng, radius: $radius})",
                         lat=data.get("lat"), lng=data.get("lng"), radius=data.get("radius"))

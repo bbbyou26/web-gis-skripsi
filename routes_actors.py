@@ -66,7 +66,7 @@ def save_actor():
         a.raw_data  = $raw_data,
         a.embedding = $embedding
     """
-    with driver.session(database="pp1") as neo_session:
+    with driver.session() as neo_session:
         neo_session.run(
             query,
             act_id=actor_id, act_type=actor_type, name=name,
@@ -88,7 +88,7 @@ def get_actors():
     """
     actors = []
     try:
-        with driver.session(database="pp1") as neo_session:
+        with driver.session() as neo_session:
             for record in neo_session.run(query):
                 raw = {}
                 if record["raw_data"]:
@@ -116,7 +116,7 @@ def get_actors():
 def delete_actor():
     actor_id = request.get_json().get("id")
     query    = "MATCH (a:Actor {id: $act_id}) DETACH DELETE a"
-    with driver.session(database="pp1") as neo_session:
+    with driver.session() as neo_session:
         neo_session.run(query, act_id=actor_id)
     return jsonify({"success": True})
 

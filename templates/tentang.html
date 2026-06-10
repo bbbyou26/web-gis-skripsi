@@ -1,221 +1,555 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tentang Peneliti - Bayu Dwi Prasetyo</title>
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
     <!-- CSS -->
-    <link rel="stylesheet" href="/static/css/global.css">
-    <link rel="stylesheet" href="/static/css/tentang.css">
-</head>
+    <link rel="stylesheet" href="/static/css/global.css" />
+    <link rel="stylesheet" href="/static/css/tentang.css" />
+  </head>
 
-<body>
+  <body>
     <!-- NAVBAR -->
     <nav class="navbar" id="navbar">
-        <a href="index.html" class="logo-container">
-            <img src="/static/image/logo.svg" alt="Logo" class="logo-img">
-            <h1 class="logo-text">2211080</h1>
-        </a>
+      <a href="index.html" class="logo-container">
+        <img src="/static/image/logo.svg" alt="Logo" class="logo-img" />
+        <h1 class="logo-text">2211080</h1>
+      </a>
 
-        <div class="mobile-toggle" id="mobile-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+      <div class="mobile-toggle" id="mobile-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
 
-        <ul class="nav-menu">
-            <li class="nav-item"><a href="beranda.html" class="nav-link">Beranda</a></li>
-            <li class="nav-item"><a href="tentang.html" class="nav-link active">Tentang</a></li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Proposal <i class="fa-solid fa-chevron-down"></i></a>
-                <div class="dropdown-content">
-                    <a href="beranda.html#latar-belakang" class="dropdown-link">Latar Belakang</a>
-                    <a href="beranda.html#tinjauan-pustaka" class="dropdown-link">Tinjauan Pustaka</a>
-                    <a href="beranda.html#teori" class="dropdown-link">Teori yang digunakan</a>
-                    <a href="beranda.html#metodologi" class="dropdown-link">Metodologi</a>
-                    <a href="beranda.html#rancangan" class="dropdown-link">Rancangan Sistem</a>
-                </div>
-            </li>
-            <li class="nav-item"><a href="beranda.html#studi-kasus" class="nav-link">Studi Kasus</a></li>
-            <li class="nav-item"><a href="beranda.html#uji-coba" class="nav-link">Uji Coba</a></li>
-            <li class="nav-item"><a href="/auth" class="btn-cta">Coba Aplikasi</a></li>
-        </ul>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="beranda.html" class="nav-link">Beranda</a>
+        </li>
+        <li class="nav-item">
+          <a href="tentang.html" class="nav-link active">Tentang</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link"
+            >Proposal <i class="fa-solid fa-chevron-down"></i
+          ></a>
+          <div class="dropdown-content">
+            <a href="beranda.html#latar-belakang" class="dropdown-link"
+              >Latar Belakang</a
+            >
+            <a href="beranda.html#tinjauan-pustaka" class="dropdown-link"
+              >Tinjauan Pustaka</a
+            >
+            <a href="beranda.html#teori" class="dropdown-link"
+              >Teori yang digunakan</a
+            >
+            <a href="beranda.html#metodologi" class="dropdown-link"
+              >Metodologi</a
+            >
+            <a href="beranda.html#rancangan" class="dropdown-link"
+              >Rancangan Sistem</a
+            >
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="beranda.html#studi-kasus" class="nav-link">Studi Kasus</a>
+        </li>
+        <li class="nav-item">
+          <a href="beranda.html#uji-coba" class="nav-link">Uji Coba</a>
+        </li>
+        <li class="nav-item">
+          <a href="/auth" class="btn-cta">Coba Aplikasi</a>
+        </li>
+      </ul>
     </nav>
 
     <!-- HERO SECTION -->
     <header class="tentang-hero">
-        <div class="hero-main-container">
-            <div class="hero-content-side">
-                <div class="tentang-hero-content">
-                    <span class="subtitle">Peneliti & Mahasiswa</span>
-                    <!-- hero-title class triggers the typewriter animation from script_global.js -->
-                    <h1 class="hero-title">Bayu Dwi Prasetyo</h1>
-                    <p class="hero-desc">Membangun Jembatan Antara Teknologi Spasial dan Ekonomi Kerakyatan untuk Masa
-                        Depan yang Lebih Baik.</p>
-                </div>
-            </div>
-
-            <div class="video-foreground-wrapper transparent">
-                <video autoplay muted loop playsinline class="hero-video">
-                    <source src="/static/image/Bayu.mp4" type="video/mp4">
-                </video>
-            </div>
+      <div class="hero-main-container">
+        <div class="hero-content-side">
+          <div class="tentang-hero-content">
+            <span class="subtitle">Peneliti & Mahasiswa</span>
+            <!-- hero-title class triggers the typewriter animation from script_global.js -->
+            <h1 class="hero-title">Bayu Dwi Prasetyo</h1>
+            <p class="hero-desc">
+              Membangun Jembatan Antara Teknologi Spasial dan Ekonomi Kerakyatan
+              untuk Masa Depan yang Lebih Baik.
+            </p>
+          </div>
         </div>
+
+        <div class="video-foreground-wrapper transparent">
+          <video autoplay muted loop playsinline class="hero-video">
+            <source src="/static/image/Bayu.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
     </header>
 
     <!-- PROFILE SECTION -->
     <section class="section-padding">
-        <div class="profile-container">
-            <div class="profile-img-wrapper">
-                <img src="/static/image/Foto_Bayu.png" alt="Bayu Dwi Prasetyo">
-            </div>
-            <div class="profile-info">
-                <h2>Profil Peneliti</h2>
-                <p>Halo, saya adalah mahasiswa tingkat akhir yang berfokus pada integrasi Artificial Intelligence (LLM)
-                    dengan data geografis untuk memecahkan masalah sosial-ekonomi di tingkat mikro.</p>
-
-                <div class="info-grid">
-                    <div class="info-card">
-                        <i class="fa-solid fa-id-card"></i>
-                        <h4>Nomor Induk Mahasiswa</h4>
-                        <p>2211080</p>
-                    </div>
-                    <div class="info-card">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                        <h4>Program Studi</h4>
-                        <p>S1 Informatika</p>
-                    </div>
-                </div>
-            </div>
+      <div class="profile-container">
+        <div class="profile-img-wrapper">
+          <img src="/static/image/Foto_Bayu.png" alt="Bayu Dwi Prasetyo" />
         </div>
+        <div class="profile-info">
+          <h2>Profil Peneliti</h2>
+          <p>
+            Halo, saya adalah mahasiswa tingkat akhir yang berfokus pada
+            integrasi Artificial Intelligence (LLM) dengan data geografis untuk
+            memecahkan masalah sosial-ekonomi di tingkat mikro.
+          </p>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <i class="fa-solid fa-id-card"></i>
+              <h4>Nomor Induk Mahasiswa</h4>
+              <p>2211080</p>
+            </div>
+            <div class="info-card">
+              <i class="fa-solid fa-graduation-cap"></i>
+              <h4>Program Studi</h4>
+              <p>S1 Informatika</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- VISION SECTION -->
     <section class="section-padding vision-section">
-        <div class="vision-container">
-            <img src="/static/image/logo_kampus.png" alt="Logo Kampus" class="vision-logo">
-            <div class="vision-content">
-                Sejalan dengan visi <strong>Global Technopreneurship Campus</strong>, kami menggabungkan pendidikan,
-                teknologi, inovasi, riset, dan kewirausahaan. Tujuan utama kami adalah menghasilkan lulusan yang tidak
-                hanya mencari kerja, tetapi juga <strong>menciptakan usaha, inovasi, dan lapangan kerja</strong>, serta
-                memiliki daya saing internasional dan pola pikir global.
-            </div>
-
-            <div class="dna-banner">
-                <div class="dna-icon">
-                    <i class="fa-solid fa-dna"></i>
-                </div>
-                <div class="dna-text">
-                    <h3>Technopreneurship DNA</h3>
-                    <p>Pola pikir kreatif, mandiri, inovatif, dan berani mengambil peluang harus melekat pada seluruh
-                        civitas akademika sebagai identitas utama kampus kami.</p>
-                </div>
-            </div>
+      <div class="vision-container">
+        <img
+          src="/static/image/logo_kampus.png"
+          alt="Logo Kampus"
+          class="vision-logo"
+        />
+        <div class="vision-content">
+          Sejalan dengan visi <strong>Global Technopreneurship Campus</strong>,
+          kami menggabungkan pendidikan, teknologi, inovasi, riset, dan
+          kewirausahaan. Tujuan utama kami adalah menghasilkan lulusan yang
+          tidak hanya mencari kerja, tetapi juga
+          <strong>menciptakan usaha, inovasi, dan lapangan kerja</strong>, serta
+          memiliki daya saing internasional dan pola pikir global.
         </div>
+
+        <div class="dna-banner">
+          <div class="dna-icon">
+            <i class="fa-solid fa-dna"></i>
+          </div>
+          <div class="dna-text">
+            <h3>Technopreneurship DNA</h3>
+            <p>
+              Pola pikir kreatif, mandiri, inovatif, dan berani mengambil
+              peluang harus melekat pada seluruh civitas akademika sebagai
+              identitas utama kampus kami.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- SKRIPSI SECTION -->
     <section class="section-padding skripsi-section">
-        <div class="skripsi-header">
-            <span class="skripsi-tag">Proposal Skripsi</span>
-            <h2 class="skripsi-title">RANCANG BANGUN APLIKASI WEB GIS BERBASIS KNOWLEDGE GRAPH DAN LLM UNTUK
-                IDENTIFIKASI VALUE CHAIN EKOSISTEM PENCIPTA KERJA</h2>
+      <div class="skripsi-header">
+        <span class="skripsi-tag">Proposal Skripsi</span>
+        <h2 class="skripsi-title">
+          RANCANG BANGUN APLIKASI WEB GIS BERBASIS KNOWLEDGE GRAPH DAN LLM UNTUK
+          IDENTIFIKASI VALUE CHAIN EKOSISTEM PENCIPTA KERJA
+        </h2>
+      </div>
+
+      <div class="skripsi-layout">
+        <div class="skripsi-content">
+          <h3>Latar Belakang Penelitian</h3>
+          <div class="latar-belakang-text">
+            <p>
+              Perkembangan Artificial Intelligence (AI) dan Geographic
+              Information System (GIS) memberikan peluang besar dalam
+              transformasi bisnis modern. Namun, di Indonesia, tantangan
+              struktural seperti ketimpangan distribusi lapangan kerja dan
+              kesenjangan keterampilan (mismatch) masih menjadi hambatan utama
+              dalam pembangunan ekonomi nasional.
+            </p>
+
+            <p>
+              Penelitian ini menawarkan solusi digital terintegrasi melalui
+              <strong>Web GIS</strong> dan
+              <strong>Knowledge Graph</strong> untuk memetakan aktor ekonomi dan
+              rantai nilainya. Dengan bantuan
+              <strong>Spatial Chatbot AI</strong>, masyarakat dapat
+              mengidentifikasi potensi sumber daya di sekitar mereka dan
+              mengubahnya menjadi gagasan bisnis yang terencana.
+            </p>
+          </div>
         </div>
 
-        <div class="skripsi-layout">
-            <div class="skripsi-content">
-                <h3>Latar Belakang Penelitian</h3>
-                <div class="latar-belakang-text">
-                    <p>Perkembangan Artificial Intelligence (AI) dan Geographic Information System (GIS) memberikan
-                        peluang besar dalam transformasi bisnis modern. Namun, di Indonesia, tantangan struktural
-                        seperti ketimpangan distribusi lapangan kerja dan kesenjangan keterampilan (mismatch) masih
-                        menjadi hambatan utama dalam pembangunan ekonomi nasional.</p>
-
-                    <p>Fenomena <strong>Necessity Entrepreneurship</strong> (wirausaha karena terpaksa) sangat menonjol
-                        di wilayah seperti Kelurahan Argosari. Dampak pertambangan batubara telah mengganggu sektor
-                        agraria, sementara minimnya infrastruktur pasar fisik mempersulit masyarakat dalam menemukan
-                        peluang ekonomi baru.</p>
-
-                    <p>Penelitian ini menawarkan solusi digital terintegrasi melalui <strong>Web GIS</strong> dan
-                        <strong>Knowledge Graph</strong> untuk memetakan aktor ekonomi dan rantai nilainya. Dengan
-                        bantuan <strong>Spatial Chatbot AI</strong>, masyarakat dapat mengidentifikasi potensi sumber
-                        daya di sekitar mereka dan mengubahnya menjadi gagasan bisnis yang terencana, bukan sekadar
-                        untuk bertahan hidup.
-                    </p>
-                </div>
-            </div>
-
-            <div class="skripsi-visual">
-                <div class="skripsi-img-container">
-                    <img src="/static/image/Skripsi.png" alt="Visualisasi Skripsi">
-                </div>
-            </div>
+        <div class="skripsi-visual">
+          <div class="skripsi-img-container">
+            <img src="/static/image/Skripsi.png" alt="Visualisasi Skripsi" />
+          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- EXPLORATION CTA SECTION -->
+    <section class="cta-exploration-section">
+      <div class="cta-exploration-container">
+        <button id="btn-exploration-trigger" class="btn-exploration">
+          Informasi Selengkapnya
+        </button>
+        <div class="cta-image-wrapper">
+          <img
+            src="/static/image/bayu_angkat.png"
+            alt="Bayu Angkat Beban"
+            class="cta-lift-image"
+          />
+        </div>
+      </div>
     </section>
 
     <!-- FOOTER -->
     <footer class="footer-premium dark">
-        <div class="footer-container">
-            <div class="footer-main">
-                <div class="footer-brand-box">
-                    <div class="logo-container">
-                        <img src="/static/image/logo.svg" alt="Logo" class="logo-img large">
-                        <h2 class="logo-text white">2211080</h2>
-                    </div>
-                    <p class="brand-desc">Solusi cerdas pemetaan ekosistem pencipta kerja berbasis Knowledge Graph dan
-                        LLM. Menjembatani potensi lokal menuju kemandirian ekonomi.</p>
-                </div>
-
-                <div class="footer-grid">
-                    <div class="footer-column">
-                        <h4>Platform</h4>
-                        <ul>
-                            <li><a href="/auth">Coba Aplikasi</a></li>
-                            <li><a href="beranda.html#preview">Fitur Utama</a></li>
-                            <li><a href="beranda.html#uji-coba">Eksperimen</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Proposal Skripsi</h4>
-                        <ul>
-                            <li><a href="beranda.html#latar-belakang">Latar Belakang</a></li>
-                            <li><a href="beranda.html#teori">Landasan Teori</a></li>
-                            <li><a href="beranda.html#metodologi">Metodologi</a></li>
-                            <li><a href="beranda.html#rancangan">Rancangan Sistem</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Kampus</h4>
-                        <p class="campus-text">Informatika - S1<br>Universitas Mulia<br>Balikpapan</p>
-                    </div>
-                </div>
+      <div class="footer-container">
+        <div class="footer-main">
+          <div class="footer-brand-box">
+            <div class="logo-container">
+              <img
+                src="/static/image/logo.svg"
+                alt="Logo"
+                class="logo-img large"
+              />
+              <h2 class="logo-text white">2211080</h2>
             </div>
+            <p class="brand-desc">
+              Solusi cerdas pemetaan ekosistem pencipta kerja berbasis Knowledge
+              Graph dan LLM. Menjembatani potensi lokal menuju kemandirian
+              ekonomi.
+            </p>
+          </div>
 
-            <div class="footer-bottom">
-                <div class="divider"></div>
-                <div class="bottom-flex">
-                    <p class="copyright">&copy; 2026 Bayu Dwi Prasetyo. All Rights Reserved.</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fa-brands fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/bayu-dwi-prasetyo-02918a337" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
-                    </div>
-                </div>
+          <div class="footer-grid">
+            <div class="footer-column">
+              <h4>Platform</h4>
+              <ul>
+                <li><a href="/auth">Coba Aplikasi</a></li>
+                <li><a href="beranda.html#preview">Fitur Utama</a></li>
+                <li><a href="beranda.html#uji-coba">Eksperimen</a></li>
+              </ul>
             </div>
+            <div class="footer-column">
+              <h4>Proposal Skripsi</h4>
+              <ul>
+                <li>
+                  <a href="beranda.html#latar-belakang">Latar Belakang</a>
+                </li>
+                <li><a href="beranda.html#teori">Landasan Teori</a></li>
+                <li><a href="beranda.html#metodologi">Metodologi</a></li>
+                <li><a href="beranda.html#rancangan">Rancangan Sistem</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Kampus</h4>
+              <p class="campus-text">
+                Informatika - S1<br />Universitas Mulia<br />Balikpapan
+              </p>
+            </div>
+          </div>
         </div>
+
+        <div class="footer-bottom">
+          <div class="divider"></div>
+          <div class="bottom-flex">
+            <p class="copyright">
+              &copy; 2026 Bayu Dwi Prasetyo. All Rights Reserved.
+            </p>
+            <div class="social-icons">
+              <a href="#"><i class="fa-brands fa-github"></i></a>
+              <a
+                href="https://www.linkedin.com/in/bayu-dwi-prasetyo-02918a337"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fa-brands fa-linkedin"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
     </footer>
+
+    <!-- MAIN EXPLORATION OVERLAY -->
+    <div id="exploration-overlay" class="exploration-overlay">
+      <button class="close-overlay" id="close-exploration-overlay">
+        &times;
+      </button>
+      <div class="overlay-grid">
+        <!-- Quadrant 1: Buka Presentasi -->
+        <a
+          href="https://canva.link/yk3bz4qa0vhtady"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="grid-quadrant quadrant-tl"
+        >
+          <div class="quadrant-content">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              class="svg-icon"
+            >
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <h3>Buka Presentasi</h3>
+            <p>Saksikan pemaparan presentasi penelitian</p>
+          </div>
+        </a>
+        <!-- Quadrant 2: Infografis -->
+        <div class="grid-quadrant quadrant-tr" id="trigger-infografis">
+          <div class="quadrant-content">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              class="svg-icon"
+            >
+              <path d="M3 3v18h18"></path>
+              <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"></path>
+            </svg>
+            <h3>Infografis</h3>
+            <p>Lihat detail infografis & catat pertanyaan</p>
+          </div>
+        </div>
+        <!-- Quadrant 3: Halaman Universitas -->
+        <a
+          href="https://universitasmulia.ac.id/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="grid-quadrant quadrant-bl"
+        >
+          <div class="quadrant-content">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              class="svg-icon"
+            >
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+              <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path>
+            </svg>
+            <h3>Halaman Universitas</h3>
+            <p>Kunjungi situs resmi Universitas Mulia</p>
+          </div>
+        </a>
+        <!-- Quadrant 4: Hubungi Saya -->
+        <a
+          href="https://wa.me/62895704905129"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="grid-quadrant quadrant-br"
+        >
+          <div class="quadrant-content">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              class="svg-icon"
+            >
+              <path
+                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+              ></path>
+            </svg>
+            <h3>Hubungi Saya</h3>
+            <p>Hubungi peneliti secara langsung via WhatsApp</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- INFOGRAFIS SUB-MODAL OVERLAY -->
+    <div id="infografis-overlay" class="infografis-overlay">
+      <div class="infografis-modal-card">
+        <button class="close-overlay" id="close-infografis-overlay">
+          &times;
+        </button>
+
+        <!-- Toggle control at the top -->
+        <div class="toggle-image-control">
+          <label class="switch-container">
+            <input type="checkbox" id="toggle-infographic-image" />
+            <span class="switch-slider"></span>
+          </label>
+          <span class="toggle-label">Tampilkan Gambar Infografis</span>
+        </div>
+
+        <!-- Full-width Image Panel (top, hidden by default) -->
+        <div class="infografis-image-panel hidden" id="infografis-image-panel">
+          <img
+            src="/static/image/infografis.png"
+            alt="Infografis Proposal Skripsi"
+            class="infografis-img"
+          />
+        </div>
+
+        <!-- Notes Section Below -->
+        <div class="infografis-notes-section">
+          <h2>Silahkan ajukan pertanyaan!!!</h2>
+          <p class="intro-text">
+            Catat poin penting atau draf pertanyaan Anda sebelum sesi tanya
+            jawab.
+          </p>
+
+          <div class="note-card">
+            <div class="note-card-header" id="btn-toggle-note-input">
+              <div class="note-card-header-left">
+                <i class="fa-solid fa-pen-to-square"></i>
+                <span>Buat Catatan Baru</span>
+              </div>
+              <i class="fa-solid fa-chevron-down note-chevron"></i>
+            </div>
+
+            <div class="note-card-body hidden" id="note-input-wrapper">
+              <textarea
+                id="note-textarea"
+                placeholder="Ketik pertanyaan atau catatan Anda di sini..."
+              ></textarea>
+              <div class="note-card-actions">
+                <button
+                  type="button"
+                  class="btn-action-primary"
+                  id="btn-save-note"
+                >
+                  <i class="fa-solid fa-check"></i> Simpan
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Structured output for notes -->
+          <div class="note-result-card hidden" id="note-output-container">
+            <div class="note-result-header">
+              <div class="note-result-header-left">
+                <i class="fa-solid fa-clipboard-check"></i>
+                <span>Catatan Tersimpan</span>
+              </div>
+              <div class="note-result-header-actions">
+                <button
+                  id="btn-download-notes"
+                  class="btn-download-notes"
+                  title="Unduh Catatan (TXT)"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    class="svg-download-icon"
+                  >
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                </button>
+                <button
+                  id="btn-delete-selected"
+                  class="btn-delete-selected"
+                  title="Hapus Catatan Terpilih"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    class="svg-delete-icon"
+                  >
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path
+                      d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+                    ></path>
+                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="note-result-body" id="note-output-content"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FULLSCREEN IMAGE LIGHTBOX -->
+    <div id="image-lightbox" class="image-lightbox">
+      <div class="lightbox-content-wrapper">
+        <img
+          src="/static/image/infografis.png"
+          alt="Infografis Fullscreen"
+          class="lightbox-img"
+        />
+      </div>
+    </div>
+
+    <!-- THANK YOU MODAL -->
+    <div id="thank-you-overlay" class="thank-you-overlay">
+      <div class="thank-you-card">
+        <div class="thank-you-content">
+          <h2>Terima Kasih</h2>
+          <p>
+            Terima kasih telah meluangkan waktu untuk memahami wawasan informasi
+            penelitian saya
+          </p>
+          <button id="btn-thank-you-ok" class="btn-thank-you-ok">OK</button>
+        </div>
+        <div class="thank-you-image-wrapper">
+          <img
+            src="/static/image/terimakasih.png"
+            alt="Terima Kasih"
+            class="thank-you-img"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- CUSTOM CONFIRM MODAL -->
+    <div id="custom-confirm-overlay" class="custom-confirm-overlay">
+      <div class="custom-confirm-card">
+        <div class="confirm-icon-wrapper">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <h3>Konfirmasi</h3>
+        <p id="custom-confirm-message">
+          Apakah Anda yakin ingin melakukan tindakan ini?
+        </p>
+        <div class="confirm-actions">
+          <button id="btn-confirm-cancel" class="btn-confirm-cancel">
+            Batal
+          </button>
+          <button id="btn-confirm-ok" class="btn-confirm-ok">Hapus</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CUSTOM TOAST CONTAINER -->
+    <div id="custom-toast-container" class="custom-toast-container"></div>
 
     <!-- Scripts -->
     <script src="/static/js/script_global.js"></script>
-</body>
-
+  </body>
 </html>

@@ -15,7 +15,7 @@ from config import app
 # Import semua modul route agar route-nya terdaftar ke `app`
 import routes_auth       
 import routes_actors     
-import routes_spatial
+import routes_spatial    
 import routes_ragas
 
 # ===============================
