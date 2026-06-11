@@ -6,11 +6,10 @@
   font-family: system-ui, sans-serif;
 }
 
-/* body sebagai flex container untuk center semua .app */
 body {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   min-height: 100vh;
   margin: 0;
   background: #eaeaea;

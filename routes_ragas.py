@@ -80,7 +80,8 @@ def ragas_evaluate():
             dataset,
             metrics=[faithfulness_metric, answer_relevancy],
             llm=ragas_llm,
-            embeddings=ragas_embed
+            embeddings=ragas_embed,
+            raise_exceptions=False
         )
         
         # Ekstrak skor (EvaluationResult tidak memiliki metode .get)

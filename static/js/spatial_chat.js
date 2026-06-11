@@ -356,6 +356,10 @@ function appendMessage(sender, text, evalData = null) {
         formattedText = text;
     } else {
         let processed = text;
+        
+        // 1. Pre-process AEO links [[Name|ID]] -> Clickable Span (BEFORE marked, so '|' doesn't break tables)
+        processed = processed.replace(/\[\[(.*?)\|(.*?)\]\]/g, `<span class="actor-link" onclick="window.jumpToActor('$2')"><strong>$1</strong></span>`);
+
         // 2. Use Marked for standard Markdown (Tables, Lists, Bold, etc.)
         if (typeof marked !== 'undefined') {
             formattedText = marked.parse(processed).replace(/<table[^>]*>/g, match => '<div class="table-scroll-wrapper">' + match).replace(/<\/table>/g, '</table></div>');
@@ -363,14 +367,27 @@ function appendMessage(sender, text, evalData = null) {
             formattedText = processed.replace(/\n\n+/g, '<br/><br/>').replace(/\n/g, '<br/>');
         }
 
-        // 3. AEO Links [[Name|ID]] -> Clickable Span
-        formattedText = formattedText.replace(/\[\[(.*?)\|(.*?)\]\]/g, `<span class="actor-link" onclick="window.jumpToActor('$2')"><strong>$1</strong></span>`);
-
-        // 4. Ubah sisa <strong> (dari bold text Markdown AI) menjadi CTA pop-up berdasarkan NAMA (Auto-AEO fallback)
-        formattedText = formattedText.replace(/<strong>(.*?)<\/strong>/g, (match, text) => {
+        // 3. Ubah sisa <strong> (dari bold text Markdown AI) menjadi CTA pop-up berdasarkan NAMA (Auto-AEO fallback) HANYA jika bertipe aktor
+        formattedText = formattedText.replace(/<strong>(.*?)<\/strong>/g, (match, textContent) => {
             // Jika sudah ada di dalam actor-link, abaikan (mencegah nested onclick)
-            if (text.includes("span class")) return match;
-            return `<span class="actor-link" onclick="window.jumpToActorByName('${text.replace(/'/g, "\\'")}')"><strong>${text}</strong></span>`;
+            if (textContent.includes("span class")) return match;
+            
+            // Cek apakah 'textContent' benar-benar nama aktor yang ada di map
+            let isActor = false;
+            if (window.actorMarkers) {
+                const query = textContent.toLowerCase().trim();
+                isActor = window.actorMarkers.some(m => {
+                    if (!m.actorData) return false;
+                    const mName = (m.actorData["Nama"] || m.actorData["Nama Lokasi"] || "").toLowerCase();
+                    return mName && (mName === query || (mName.length > 3 && (mName.includes(query) || query.includes(mName))));
+                });
+            }
+            
+            if (isActor) {
+                return `<span class="actor-link" onclick="window.jumpToActorByName('${textContent.replace(/'/g, "\\'")}')"><strong>${textContent}</strong></span>`;
+            }
+            // Jika bukan aktor, biarkan tetap <strong> biasa
+            return match;
         });
     }
 
@@ -499,3 +516,4 @@ window.removeLocationTarget = function () {
     document.getElementById('locationTargetBadge').classList.add('hidden');
     appendMessage('bot', "Target lokasi dihapus.");
 };
+

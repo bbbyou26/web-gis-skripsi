@@ -1,0 +1,51 @@
+/* VCS CHAT CSS */
+.extra-icon.vcs-icon {
+  top: 420px;
+  right: 10px;
+}
+
+.vcs-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 8px;
+  padding: 4px;
+  border-radius: 4px;
+  background-color: #f0f7f9;
+  border: 1px solid #d0dde3;
+  transition: all 0.2s ease;
+  vertical-align: middle;
+}
+
+.vcs-copy-btn:hover {
+  background-color: #38a0c4;
+  border-color: #38a0c4;
+}
+
+.vcs-copy-btn:hover img {
+  filter: brightness(0) invert(1);
+}
+
+.btn-vcs-reset {
+  background: #fff0f0;
+  border: 1px solid #ffcccc;
+  border-radius: 12px;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #ff4757;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-right: 8px;
+}
+
+.btn-vcs-reset:hover {
+  background: #ff4757;
+  color: white;
+  border-color: #ff4757;
+}
+
+.vcs-content-text {
+  display: inline;
+}

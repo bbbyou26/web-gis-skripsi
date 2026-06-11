@@ -127,3 +127,60 @@ def save_spatial_pin():
             session.run("CREATE (f:FocusArea {lat: $lat, lng: $lng, radius: $radius})",
                         lat=data.get("lat"), lng=data.get("lng"), radius=data.get("radius"))
     return jsonify({"success": True})
+
+vcs_memory_store = [] # Use global store for memory to prevent Cookie Too Large (HTTP 431)
+
+@app.route("/api/vcs/reset", methods=["POST"])
+def reset_vcs():
+    """Endpoint untuk mereset memori percakapan VCS."""
+    global vcs_memory_store
+    vcs_memory_store.clear()
+    return jsonify({"success": True})
+
+@app.route("/api/vcs/generate", methods=["POST"])
+def generate_vcs():
+    """Endpoint untuk menghasilkan Value Chain System (Primary & Support Activities) secara interaktif."""
+    try:
+        data = request.get_json()
+        prompt = data.get("prompt", "")
+        
+        global vcs_memory_store
+        history = vcs_memory_store
+        
+        if not history:
+            system_prompt = (
+                "Anda adalah AI Konsultan Bisnis Spesialis Value Chain System (VCS) dari Porter.\n"
+                "Tugas Anda adalah merancang rantai nilai (Primary & Support Activities) secara detail untuk ide bisnis yang diberikan.\n"
+                "Sertakan juga Strategi Peningkatan Margin yang praktis.\n"
+                "Gunakan list (bullet points) atau paragraf.\n"
+                "Buat struktur utama:\n"
+                "1. Primary Activities\n"
+                "2. Support Activities\n"
+                "3. Margin Strategy"
+            )
+        else:
+            system_prompt = (
+                "Anda adalah AI Konsultan Bisnis. Ini adalah sesi diskusi lanjutan dengan pengguna mengenai analisis bisnis sebelumnya.\n"
+                "Jawablah pertanyaan secara interaktif, natural, dan analitis layaknya konsultan sungguhan.\n"
+                "JANGAN mengulangi format struktur rantai nilai (Primary/Support) secara keseluruhan jika tidak diminta.\n"
+                "Fokus berikan solusi, taktik lanjutan, atau jawaban spesifik terhadap pertanyaan pengguna."
+            )
+        
+        history_context = ""
+        if history:
+            history_context = "[RIWAYAT DISKUSI SEBELUMNYA]:\n"
+            for h in history:
+                history_context += f"User: {h['user']}\nAI: {h['bot']}\n\n"
+        
+        user_prompt = f"{history_context}[PERTANYAAN BARU]:\n{prompt}"
+        
+        reply = call_llm(system_prompt=system_prompt, user_prompt=user_prompt, temperature=0.75)
+        
+        # Simpan ke memori (batasi 5 putaran agar token tidak berlebih)
+        history.append({"user": prompt, "bot": reply})
+        vcs_memory_store = history[-5:]
+        
+        return jsonify({"success": True, "reply": reply})
+    except Exception as e:
+        print(f"[vcs_generate] Error: {e}")
+        return jsonify({"success": False, "error": str(e)}), 500

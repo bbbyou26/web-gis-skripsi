@@ -785,7 +785,7 @@ window.addEventListener('load', () => {
             if (iconUrl) {
               const marker = L.marker([rec.lat, rec.lng], {
                 icon: createActorIcon(iconUrl),
-                draggable: true,
+                draggable: !!window.isAdmin,
               });
 
               marker.actorType = type;
