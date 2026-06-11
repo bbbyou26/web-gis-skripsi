@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="/static/css/edit_area.css" />
   <!-- Fitur Chatbot Spasial -->
   <link rel="stylesheet" href="/static/css/spatial_chat.css" />
+  <link rel="stylesheet" href="/static/css/vcs_chat.css" />
   <!-- Profil Pengguna -->
   <link rel="stylesheet" href="/static/css/user_profile.css" />
 
@@ -482,6 +483,15 @@
       </span>
     </div>
 
+    {% if session.get('user', '').endswith(':admin@2211080.com') or session.get('user', '').endswith(':admin') %}
+    <div class="extra-icon vcs-icon" onclick="window.toggleVCS()">
+      <span>
+        <img src="/static/image/actor/vcs.svg" alt="Value Chain System"
+          onerror="this.src='/static/image/actor/chatbot.svg'" />
+      </span>
+    </div>
+    {% endif %}
+
     <!-- Chatbot Overlay UI -->
     <div id="chatbotOverlay" class="chatbot-overlay hidden">
       <div class="chatbot-card">
@@ -564,6 +574,42 @@
         </div>
       </div>
     </div>
+
+    <!-- VCS Overlay UI -->
+    <div id="vcsOverlay" class="chatbot-overlay hidden">
+      <div class="chatbot-card">
+        <div class="chatbot-header" style="align-items: center;">
+          <div class="header-left" style="display: flex; align-items: center; gap: 10px;">
+            <img src="/static/image/actor/vcs.svg" alt="VCS AI Agent" class="bot-icon"
+              onerror="this.src='/static/image/actor/chatbot.svg'" />
+            <div class="bot-info">
+              <span class="bot-name">Value Chain AI</span>
+              <span class="bot-status">Konsultan Margin Usaha</span>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <button class="btn-vcs-reset" onclick="window.resetVCS()">Reset</button>
+            <button class="close-chatbot" onclick="window.toggleVCS()">✕</button>
+          </div>
+        </div>
+
+        <div class="chatbot-messages" id="vcsMessages">
+          <div class="message bot">
+            <div class="bubble">Halo! Deskripsikan bisnis Anda, lalu saya akan membuatkan Value Chain lengkap serta
+              strategi peningkatan profit dan margin yang siap digunakan.</div>
+          </div>
+        </div>
+
+        <div class="chatbot-input-container">
+          <div class="input-wrapper">
+            <textarea id="vcsInput" placeholder="Deskripsikan bisnis Anda (cth: Bisnis Kopi Susu Gula Aren)..." rows="2"
+              style="flex: 1; border: none; outline: none; background: transparent; resize: none; font-family: inherit; font-size: 14px; color: #333; padding: 4px;"></textarea>
+            <button class="send-chat" onclick="window.sendVCSMessage()">➤</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- PROFILE EDIT OVERLAY -->
     <div id="profileEditOverlay" class="profile-edit-overlay hidden">
       <div class="profile-edit-card">
@@ -594,8 +640,8 @@
   <script src="/static/js/map.js"></script>
   <script src="/static/js/actor_popup.js"></script>
   <script src="/static/js/draw_area.js"></script>
-  <!-- Spatial Chatbot & AI Pin -->
   <script src="/static/js/spatial_chat.js"></script>
+  <script src="/static/js/vcs_chat.js"></script>
   <script>
     // Ganti Map dengan array JSON agar mudah simpan/load
     window.actorData = []; // setiap item: { actorId, markerId, type, iconUrl, nama, sektor, valueChain, survival, images, dll }
