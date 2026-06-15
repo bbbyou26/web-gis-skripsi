@@ -1,0 +1,392 @@
+/* ===============================
+   COMING SOON SPECIFIC STYLES
+   =============================== */
+
+.soon-main {
+    min-height: 100vh;
+    padding: 160px 5% 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-page);
+}
+
+/* Background Blobs */
+.soon-blob-1,
+.soon-blob-2,
+.soon-blob-3 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.soon-blob-1 {
+    top: -10%;
+    left: -5%;
+    width: 45vw;
+    height: 45vw;
+    max-width: 600px;
+    max-height: 600px;
+    background: radial-gradient(circle, rgba(56, 160, 196, 0.22) 0%, transparent 75%);
+    animation: floating 8s infinite ease-in-out;
+}
+
+.soon-blob-2 {
+    bottom: -10%;
+    right: -5%;
+    width: 40vw;
+    height: 40vw;
+    max-width: 500px;
+    max-height: 500px;
+    background: radial-gradient(circle, rgba(141, 152, 224, 0.18) 0%, transparent 75%);
+    animation: floating 10s infinite ease-in-out reverse;
+}
+
+.soon-blob-3 {
+    top: 40%;
+    left: 45%;
+    width: 25vw;
+    height: 25vw;
+    max-width: 300px;
+    max-height: 300px;
+    background: radial-gradient(circle, rgba(255, 71, 87, 0.08) 0%, transparent 70%);
+    animation: floating 12s infinite ease-in-out;
+}
+
+/* Glassmorphism Card */
+.soon-card {
+    position: relative;
+    z-index: 10;
+    background: var(--bg-card);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 40px;
+    padding: 3.5rem 3rem;
+    text-align: center;
+    max-width: 780px;
+    width: 100%;
+    box-shadow: var(--shadow-lg), 0 35px 70px rgba(56, 160, 196, 0.08);
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.soon-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 45px 90px rgba(56, 160, 196, 0.12);
+}
+
+/* System Status Badge */
+.soon-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(56, 160, 196, 0.1);
+    border: 1px solid rgba(56, 160, 196, 0.25);
+    padding: 6px 16px;
+    border-radius: 99px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7);
+    animation: badgePulse 2s infinite;
+}
+
+@keyframes badgePulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(255, 71, 87, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 71, 87, 0);
+    }
+}
+
+/* Coming Soon Image Container - Clean and Minimal */
+.soon-img-container {
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.soon-img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 15px 30px rgba(56, 160, 196, 0.15));
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.soon-img:hover {
+    transform: translateY(-8px) scale(1.03);
+}
+
+/* Title & Description */
+.soon-title {
+    color: var(--text-main);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    line-height: 1.25;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.5px;
+}
+
+.gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.soon-desc {
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Progress & Roadmap styling */
+.soon-progress-container {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(141, 152, 224, 0.15);
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin-bottom: 2.5rem;
+    text-align: left;
+    width: 100%;
+}
+
+.soon-progress-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.75rem;
+}
+
+.progress-percentage {
+    color: var(--primary-dark);
+}
+
+.soon-progress-bar {
+    height: 10px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.soon-progress-fill {
+    height: 100%;
+    width: 75%;
+    background: var(--gradient-primary);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.soon-progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    animation: progressLight 2s infinite linear;
+}
+
+@keyframes progressLight {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Roadmap Grid */
+.soon-roadmap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    position: relative;
+    padding-top: 5px;
+}
+
+.soon-roadmap::before {
+    content: '';
+    position: absolute;
+    top: 21px;
+    left: 12.5%;
+    right: 12.5%;
+    height: 2px;
+    background: #e2e8f0;
+    z-index: 1;
+}
+
+.roadmap-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.roadmap-dot {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: white;
+    border: 2.5px solid #cbd5e1;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    transition: var(--transition);
+}
+
+.roadmap-step span {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-dim);
+    transition: var(--transition);
+}
+
+/* Step states */
+.roadmap-step.done .roadmap-dot {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+.roadmap-step.done span {
+    color: var(--primary-dark);
+}
+
+.roadmap-step.active .roadmap-dot {
+    border-color: var(--primary);
+    color: var(--primary);
+    box-shadow: 0 0 12px rgba(56, 160, 196, 0.35);
+}
+
+.roadmap-step.active span {
+    color: var(--text-main);
+}
+
+/* Button Group */
+.soon-btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+}
+
+.soon-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.95rem 2.2rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.soon-btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: 0 12px 25px rgba(56, 160, 196, 0.2);
+}
+
+.soon-btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 35px rgba(56, 160, 196, 0.3);
+}
+
+.soon-btn-outline {
+    background: white;
+    color: var(--text-main);
+    border: 1.5px solid rgba(141, 152, 224, 0.4);
+}
+
+.soon-btn-outline:hover {
+    transform: translateY(-3px);
+    background: rgba(141, 152, 224, 0.05);
+    border-color: var(--secondary);
+    color: var(--secondary-dark);
+}
+
+.active-cta {
+    border: 2px solid white;
+    box-shadow: 0 0 15px rgba(56, 160, 196, 0.4);
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .soon-card {
+        padding: 3rem 1.5rem;
+        border-radius: 30px;
+    }
+
+    .soon-roadmap::before {
+        display: none;
+    }
+
+    .soon-roadmap {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        padding-left: 2rem;
+        align-items: flex-start;
+    }
+
+    .roadmap-step {
+        flex-direction: row;
+        gap: 1rem;
+        text-align: left;
+    }
+
+    .roadmap-dot {
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+
+    .soon-btn-group {
+        flex-direction: column;
+    }
+
+    .soon-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
