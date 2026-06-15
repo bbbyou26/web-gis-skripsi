@@ -69,6 +69,10 @@ def beranda():
 def tentang():
     return render_template("tentang.html")
 
+@app.route("/soon.html")
+def soon():
+    return render_template("soon.html")
+  
 @app.route("/auth")
 def auth_page():
     return render_template("auth.html")
