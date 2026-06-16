@@ -17,6 +17,7 @@ import routes_auth
 import routes_actors     
 import routes_spatial    
 import routes_ragas
+import routes_pdf
 
 # ===============================
 # RUN SERVER
