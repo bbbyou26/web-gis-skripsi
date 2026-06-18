@@ -125,11 +125,11 @@ def get_pdf_outline():
                 "Solusi & Tujuan Akhir: Mengembangkan aplikasi Web GIS yang mengintegrasikan basis data graf (Knowledge Graph) berbasis Neo4j untuk memetakan hubungan antar-aktor ekonomi, serta memanfaatkan Large Language Model (LLM) dengan framework RAG untuk menyediakan sistem pendukung keputusan (Decision Support System) yang interaktif dalam merumuskan strategi penciptaan nilai tambah ekonomi lokal."
             ],
             "sections": [
-                {"label": "Latar Belakang", "page": 10},
-                {"label": "Rumusan Masalah", "page": 15},
-                {"label": "Batasan Penelitian", "page": 16},
-                {"label": "Tujuan Penelitian", "page": 17},
-                {"label": "Manfaat Penelitian", "page": 18}
+                {"label": "Latar Belakang", "page": 9},
+                {"label": "Rumusan Masalah", "page": 14},
+                {"label": "Batasan Penelitian", "page": 15},
+                {"label": "Tujuan Penelitian", "page": 16},
+                {"label": "Manfaat Penelitian", "page": 17}
             ]
         },
         {
@@ -142,12 +142,12 @@ def get_pdf_outline():
                 "Komputasi Spasial, Graf & Bisnis: Teori Web GIS (Geocoding, Spatial Reasoning, Buffering, Point in Polygon), Graph Database (Neo4j), REST API, Manajemen Bisnis (Value Chain Porter, JTBD, Multiplier Effect, Effectuation, LED), serta Pemodelan Sistem (DSS, Prototyping, UML, Flowchart, dan Black Box/Functional Testing)."
             ],
             "sections": [
-                {"label": "Tinjauan Pustaka", "page": 20},
-                {"label": "Keaslian Penelitian", "page": 26},
-                {"label": "Kecerdasan Buatan dan Pemrosesan Bahasa Alami", "page": 29},
-                {"label": "Sistem Informasi Geografis dan Komputasi Spasial", "page": 35},
-                {"label": "Arsitektur Basis Data, Graf, dan Komputasi Jaringan", "page": 38},
-                {"label": "Teori Manajemen Bisnis dan Ekonomi", "page": 44},
+                {"label": "Tinjauan Pustaka", "page": 19},
+                {"label": "Keaslian Penelitian", "page": 25},
+                {"label": "Kecerdasan Buatan dan Pemrosesan Bahasa Alami", "page": 28},
+                {"label": "Sistem Informasi Geografis dan Komputasi Spasial", "page": 34},
+                {"label": "Arsitektur Basis Data, Graf, dan Komputasi Jaringan", "page": 37},
+                {"label": "Teori Manajemen Bisnis dan Ekonomi", "page": 43},
                 {"label": "Rekayasa Perangkat Lunak dan Pemodelan Sistem", "page": 49}
             ]
         },
@@ -161,13 +161,14 @@ def get_pdf_outline():
                 "Eksperimen & Pengujian: Rencana pengujian fungsional (Web GIS, Chatbot, AEO Links, evaluasi output LLM via metrik RAGAS) dan pengujian lapangan melalui penyuntikan data nyata, validasi geografi, serta simulasi job creation berdasarkan alur penelitian."
             ],
             "sections": [
-                {"label": "Metode Penelitian", "page": 56},
-                {"label": "Metode Pengumpulan Data", "page": 56},
-                {"label": "Metode Analisis Data", "page": 66},
-                {"label": "Metode Pengembangan Proses Perangkat Lunak", "page": 69},
-                {"label": "Metode Perancangan", "page": 81},
-                {"label": "Eksperimen dan Pengujian", "page": 93},
-                {"label": "Alur Penelitian", "page": 97}
+                {"label": "Metode Penelitian", "page": 54},
+                {"label": "Metode Pengumpulan Data", "page": 54},
+                {"label": "Metode Analisis Data", "page": 64},
+                {"label": "Metode Pengembangan Proses Perangkat Lunak", "page": 68},
+                {"label": "Metode Perancangan", "page": 77},
+                {"label": "Eksperimen dan Pengujian", "page": 90},
+                {"label": "Alur Penelitian", "page": 94},
+                {"label": "Jadwal Penelitian", "page": 97}
             ]
         },
         {
